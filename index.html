@@ -1,1 +1,464 @@
-This is the future home on all things Amanda Bennett! Stay tuned!
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+    EDIT YOUR PAGE TITLE HERE
+  ============================================================ -->
+
+  <title>Your Name | Link in Bio</title>
+
+  <!-- Google Fonts — change the font names below if you want a different look.
+       Browse free fonts at: https://fonts.google.com -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+      THEME SYSTEM
+      All colors live here as CSS variables.
+      Dark mode is the default. Light mode values are below it.
+
+      HOW TO SWITCH THEMES:
+        1. Find a palette you like in the "COLOR PALETTES" section below.
+        2. Copy its --accent and --accent-glow values into the
+           [data-theme="dark"] and [data-theme="light"] blocks.
+        3. Done! The toggle will still work automatically.
+    ============================================================ */
+
+    /* --- ACTIVE THEME: DEFAULT (Neutral) ---
+       Clean, works for anyone. Accent is a soft white/warm white. */
+    [data-theme="dark"] {
+      --bg:           #0f0f0f;
+      --bg-card:      #1a1a1a;
+      --border:       #2a2a2a;
+      --text-primary: #f0f0f0;
+      --text-muted:   #888888;
+      --accent:       #ffffff;
+      --accent-glow:  rgba(255, 255, 255, 0.12);
+      --btn-bg:       #1e1e1e;
+      --btn-hover:    #2c2c2c;
+      --toggle-bg:    #2a2a2a;
+    }
+
+    [data-theme="light"] {
+      --bg:           #f5f5f5;
+      --bg-card:      #ffffff;
+      --border:       #e0e0e0;
+      --text-primary: #111111;
+      --text-muted:   #666666;
+      --accent:       #111111;
+      --accent-glow:  rgba(0, 0, 0, 0.06);
+      --btn-bg:       #efefef;
+      --btn-hover:    #e0e0e0;
+      --toggle-bg:    #e0e0e0;
+    }
+
+    /* ============================================================
+      COLOR PALETTES
+      To use one of these, copy the block into the [data-theme="dark"]
+      and [data-theme="light"] sections above, replacing only the
+      --accent and --accent-glow lines (and --bg / --bg-card if noted).
+    ============================================================
+
+      -- PALETTE 1: Ocean Teal --
+      Dark:
+        --accent:      #2dd4bf;
+        --accent-glow: rgba(45, 212, 191, 0.15);
+      Light:
+        --accent:      #0d9488;
+        --accent-glow: rgba(13, 148, 136, 0.10);
+
+      -- PALETTE 2: Warm Gold --
+      Dark:
+        --accent:      #f5a623;
+        --accent-glow: rgba(245, 166, 35, 0.15);
+      Light:
+        --accent:      #b45309;
+        --accent-glow: rgba(180, 83, 9, 0.10);
+
+      -- PALETTE 3: Soft Lavender --
+      Dark:
+        --accent:      #a78bfa;
+        --accent-glow: rgba(167, 139, 250, 0.15);
+      Light:
+        --accent:      #7c3aed;
+        --accent-glow: rgba(124, 58, 237, 0.10);
+
+      -- PALETTE 4: Rose Pink --
+      Dark:
+        --accent:      #fb7185;
+        --accent-glow: rgba(251, 113, 133, 0.15);
+      Light:
+        --accent:      #e11d48;
+        --accent-glow: rgba(225, 29, 72, 0.10);
+
+      -- PALETTE 5: Electric Blue --
+      Dark:
+        --accent:      #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.15);
+      Light:
+        --accent:      #0284c7;
+        --accent-glow: rgba(2, 132, 199, 0.10);
+
+      -- PALETTE 6: Sage Green --
+      Dark:
+        --accent:      #86efac;
+        --accent-glow: rgba(134, 239, 172, 0.15);
+      Light:
+        --accent:      #16a34a;
+        --accent-glow: rgba(22, 163, 74, 0.10);
+    ============================================================ */
+
+    /* ============================================================
+      BASE STYLES — you generally don't need to edit below this line
+    ============================================================ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* ---- Dark/Light Mode Toggle ---- */
+    .toggle-wrap {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+    }
+
+    .toggle-btn {
+      background: var(--toggle-bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .toggle-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .toggle-icon { font-size: 15px; }
+
+    /* ---- Profile Card ---- */
+    .card {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 32px 24px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    /* ---- Avatar ---- */
+    /* TO ADD YOUR PHOTO: replace the background-color below with:
+       background-image: url('your-photo.jpg');
+       background-size: cover;
+       background-position: center;
+       and remove the initials <span> inside .avatar in the HTML. */
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background-color: var(--btn-hover);
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .avatar-placeholder {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    /* ---- Name & Tagline ---- */
+    .profile-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      text-align: center;
+      color: var(--text-primary);
+    }
+
+    .profile-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    /* ---- Divider ---- */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+      opacity: 0.5;
+      margin: 4px 0;
+    }
+
+    /* ---- Link Buttons ---- */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    /* Each link button:
+       - href="YOUR_URL"  → where it goes
+       - The emoji and text are inside the spans below */
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--btn-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      background: var(--btn-hover);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .link-btn:active {
+      transform: translateY(0px);
+    }
+
+    .btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-icon {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .btn-label { color: var(--text-primary); }
+
+    .btn-arrow {
+      color: var(--text-muted);
+      font-size: 18px;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .link-btn:hover .btn-arrow {
+      transform: translateX(3px);
+      color: var(--accent);
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      margin-top: auto;
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ============================================================
+    DARK / LIGHT MODE TOGGLE
+    No editing needed — this works automatically.
+  ============================================================ -->
+
+  <div class="toggle-wrap">
+    <button class="toggle-btn" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+      <span class="toggle-icon" id="toggle-icon">☀️</span>
+      <span id="toggle-label">Light</span>
+    </button>
+  </div>
+
+  <!-- ============================================================
+    PROFILE CARD
+  ============================================================ -->
+
+  <div class="card">
+
+```
+<!-- AVATAR
+     To use your own photo, swap the background-color for:
+       background-image: url('your-photo.jpg');
+       background-size: cover;
+     and delete the <span class="avatar-placeholder"> element. -->
+<div class="avatar">
+  <span class="avatar-placeholder">YN</span>
+  <!-- YOUR PHOTO GOES ABOVE AS A BACKGROUND IMAGE, OR:
+       <img src="your-photo.jpg" alt="Your Name" style="width:100%;height:100%;object-fit:cover;" /> -->
+</div>
+
+<!-- ============================================================
+  EDIT YOUR NAME HERE
+============================================================ -->
+<h1 class="profile-name">Your Name</h1>
+
+<!-- ============================================================
+  EDIT YOUR TAGLINE HERE
+  Keep it short — 1 line is ideal, 2 max.
+============================================================ -->
+<p class="profile-tagline">Designer · Developer · Creator based in Your City</p>
+
+<div class="divider"></div>
+
+<!-- ============================================================
+  LINK BUTTONS
+  For each button:
+    href="..."      → Paste your full URL here  (e.g. https://instagram.com/yourhandle)
+    .btn-icon       → Swap the emoji for any icon you want
+    .btn-label      → Change the button text
+============================================================ -->
+<nav class="links" aria-label="Links">
+
+  <!-- Button 1 -->
+  <a href="#" class="link-btn">
+    <span class="btn-left">
+      <span class="btn-icon">🌐</span>
+      <span class="btn-label">My Website</span>
+    </span>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <!-- Button 2 -->
+  <a href="#" class="link-btn">
+    <span class="btn-left">
+      <span class="btn-icon">📸</span>
+      <span class="btn-label">Instagram</span>
+    </span>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <!-- Button 3 -->
+  <a href="#" class="link-btn">
+    <span class="btn-left">
+      <span class="btn-icon">💼</span>
+      <span class="btn-label">LinkedIn</span>
+    </span>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <!-- Button 4 -->
+  <a href="#" class="link-btn">
+    <span class="btn-left">
+      <span class="btn-icon">🐦</span>
+      <span class="btn-label">Twitter / X</span>
+    </span>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <!-- Button 5 -->
+  <a href="#" class="link-btn">
+    <span class="btn-left">
+      <span class="btn-icon">✉️</span>
+      <span class="btn-label">Contact Me</span>
+    </span>
+    <span class="btn-arrow">›</span>
+  </a>
+
+  <!-- TO ADD MORE BUTTONS: copy one of the blocks above and paste it here -->
+
+</nav>
+```
+
+  </div><!-- /card -->
+
+  <!-- ============================================================
+    FOOTER
+    Edit the brand name and year below.
+  ============================================================ -->
+
+  <footer>
+    <!-- Replace "Your Brand" with your name or handle, and update the year -->
+    <p>© 2025 <a href="#">Your Brand</a> · Made with ♥</p>
+  </footer>
+
+  <!-- ============================================================
+    TOGGLE SCRIPT — no editing needed
+  ============================================================ -->
+
+  <script>
+    // Page loads in dark mode by default.
+    // The toggle button switches between dark and light.
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('toggle-icon').textContent = isDark ? '🌙' : '☀️';
+      document.getElementById('toggle-label').textContent = isDark ? 'Dark' : 'Light';
+    }
+  </script>
+
+</body>
+</html>
