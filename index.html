@@ -438,7 +438,7 @@
 
     function toggleTheme() {
       const html = document.documentElement;
-      const isDark = html.getAttribute('data-theme') === 'dark';
+      const isDark = html.getAttribute('data-theme') === 'light';
       html.setAttribute('data-theme', isDark ? 'light' : 'dark');
       document.getElementById('toggle-icon').textContent = isDark ? '☀️' : '🌙';
       document.getElementById('toggle-label').textContent = isDark ? 'Light' : 'Dark';
