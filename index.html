@@ -433,16 +433,16 @@
   ============================================================ -->
 
   <script>
-    // Page loads in dark mode by default.
+    // Page loads in light mode by default.
     // The toggle button switches between dark and light.
 
     function toggleTheme() {
-      const html = document.documentElement;
-      const isDark = html.getAttribute('data-theme') === 'dark';
-      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      document.getElementById('toggle-icon').textContent = isDark ? '☀️' : '🌙';
-      document.getElementById('toggle-label').textContent = isDark ? 'Light' : 'Dark';
-    }
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('toggle-icon').textContent = isDark ? '🌙' : '☀️';
+  document.getElementById('toggle-label').textContent = isDark ? 'Dark' : 'Light';
+}
   </script>
 
 </body>
