@@ -479,18 +479,15 @@
     TOGGLE SCRIPT — no editing needed
   ============================================================ -->
 
-  <script>
-    // Page loads in light mode by default.
-    // The toggle button switches between dark and light.
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
+  }
+</script>
 
-    function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  document.getElementById('toggle-icon').textContent = isDark ? '☀️' : '🌙';
-  document.getElementById('toggle-label').textContent = isDark ? 'Light' : 'Dark';
-}
-  </script>
 
 </body>
 </html>
