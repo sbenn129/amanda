@@ -185,37 +185,32 @@
     }
 
     /* ---- Dark/Light Mode Toggle ---- */
-    .toggle-wrap {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 100;
-    }
+   .toggle-wrap {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
 
-    .toggle-btn {
-      background: var(--toggle-bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 6px 14px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.2s, border-color 0.2s;
-    }
+.toggle-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.2s;
+}
 
-    .toggle-btn:hover {
-      border-color: var(--accent);
-    }
+.toggle-btn:hover {
+  color: var(--accent);
+}
 
-    .toggle-icon { font-size: 15px; }
+.toggle-icon { font-size: 18px; }
 
     /* ---- Profile Card ---- */
     .card {
+      position: relative;
       width: 100%;
       max-width: 480px;
       display: flex;
@@ -387,7 +382,6 @@
   <div class="toggle-wrap">
     <button class="toggle-btn" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
       <span class="toggle-icon" id="toggle-icon">☀️</span>
-      <span id="toggle-label">Light</span>
     </button>
   </div>
 
